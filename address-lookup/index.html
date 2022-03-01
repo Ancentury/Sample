@@ -10,7 +10,43 @@
 
 <body>
   <form>
+<button id="findAddress" class="btn btn-primary" type="button">Look for address
+      </button>
+    <div class="form-item js-form-item form-type-textfield js-form-type-textfield form-item-address js-form-item-address form-group">
+      <label for="edit-address" class="control-label"><span class="field-name">Address</span> </label>
+  
+  
+  <input data-drupal-selector="edit-address" class="form-text form-control" type="text" id="edit-address" name="address" value="" size="60" maxlength="255">
 
+  
+  
+  </div>
+    
+    <div class="form-item js-form-item form-type-textfield js-form-type-textfield form-item-city js-form-item-city form-group">
+      <label for="edit-city" class="control-label"><span class="field-name">City</span> </label>
+  
+  
+  <input style="width: 50%" data-drupal-selector="edit-city" class="form-text form-control" type="text" id="edit-city" name="city" value="" size="60" maxlength="255">
+
+  
+  
+  </div>
+    
+    <div class="form-item js-form-item form-type-select js-form-type-select form-item-province js-form-item-province form-group">
+      <label for="edit-province" class="control-label"><span class="field-name">Province</span> </label>
+  
+  
+  <div class="select-wrapper"><select data-drupal-selector="edit-province" class="form-select form-control" id="edit-province" name="province"><option value="" selected="selected">- None -</option><option value="Alberta">Alberta</option><option value="British Columbia">British Columbia</option><option value="Manitoba">Manitoba</option><option value="New Brunswick">New Brunswick</option><option value="Newfoundland and Labrador">Newfoundland and Labrador</option><option value="Nova Scotia">Nova Scotia</option><option value="Northwest Territories">Northwest Territories</option><option value="Nunavut">Nunavut</option><option value="Ontario">Ontario</option><option value="Prince Edward Island">Prince Edward Island</option><option value="Quebec">Quebec</option><option value="Saskatchewan">Saskatchewan</option><option value="Yukon">Yukon</option></select></div>
+
+  
+  
+  </div>
+    
+    
+    
+    <button class="btn btn-secondary previous" type="button">Previous
+        </button> <button class="btn btn-primary next" type="button">Next
+        </button>
   </form>
   <script src="js/custom.js"></script>
 </body>
