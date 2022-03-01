@@ -35,3 +35,21 @@ var find_address = document.getElementById("findAddress");
            console.log(data);
         });          
       });
+
+
+var prev = document.getElementsByClassName("previous");
+        var next = document.getElementsByClassName("next");
+        for (var i = 0; i < prev.length; i++) {
+          prev[i].addEventListener("click", function(event) {
+            var el = event.target.parentElement.parentElement.parentElement;
+            el.previousElementSibling.firstElementChild.click();
+            el.parentElement.previousElementSibling.firstElementChild.firstElementChild.click();
+          });
+        }
+        for (var i = 0; i < next.length; i++) {
+          next[i].addEventListener("click", function(event) {
+            var el = event.target.parentElement.parentElement.parentElement;
+            el.previousElementSibling.firstElementChild.click();
+            el.parentElement.nextElementSibling.firstElementChild.firstElementChild.click();
+          });
+        }
