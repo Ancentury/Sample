@@ -38,14 +38,13 @@ find_address.addEventListener("click", function (event) {
       addressResultEl.appendChild(ulEl);
       console.log(data.data[1]);
 
-      document.getElementById('edit-city').value = data.data[0].cityName.en;
-      document.getElementById('edit-province').value = data.data[0].mailingAddress.province.code;
-
-      var addr = document.myForm.address;
+      var addr = document.getElementsByName('address');
       for (var i = 0; i < addr.length; i++) {
         addr[i].addEventListener('change', function () {
           console.log(this.value);
           document.getElementById('edit-address').value = this.value;
+          document.getElementById('edit-city').value = data.data[0].cityName.en;
+          document.getElementById('edit-province').value = data.data[0].mailingAddress.province.code;
         });
       }
     })
