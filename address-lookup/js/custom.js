@@ -20,7 +20,11 @@ find_address.addEventListener("click", function (event) {
       var ulEl = document.createElement("fieldset");
 
       data.data.forEach(eel => {
-        var value = eel.civicNumber.number + " " + eel.streetName + " " + eel.streetType.code + " " + eel.streetDirection.code;
+        var civicType = eel.civicNumber.Type == null || undefined ? "" : eel.civicNumber.Type + " ";
+        var civicPrefix = eel.civicNumber.prefix == null || undefined ? "" : eel.civicNumber.prefix + "-";
+        var civicSuffix = eel.civicNumber.civicSuffix == null || undefined ? "" : eel.civicNumber.civicSuffix + " ";
+        var civicDirection = eel.streetDirection.code == null || undefined ? "" : eel.streetDirection.code;
+        var value = civicType + civicPrefix + eel.civicNumber.number + " " + civicSuffix + eel.streetName + " " + eel.streetType.code + " " + civicDirection;
         var radioBtn = document.createElement("input");
         radioBtn.type = 'radio';
         radioBtn.id = value;
