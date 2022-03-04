@@ -27,10 +27,12 @@ find_address.addEventListener("click", function (event) {
         var value = civicType + civicPrefix + eel.civicNumber.number + " " + civicSuffix + eel.streetName + " " + eel.streetType.code + " " + civicDirection;
         var radioBtn = document.createElement("input");
         radioBtn.type = 'radio';
-        radioBtn.id = value;
+        radioBtn.id = value.replace(/ /g, "-");
         radioBtn.name = 'address';
         radioBtn.value = value;
+
         var liEl = document.createElement("label");
+        liEl.setAttribute("for", radioBtn.id);
         liEl.innerText = value;
         var newline = document.createElement('br');
         ulEl.appendChild(radioBtn);
@@ -40,12 +42,10 @@ find_address.addEventListener("click", function (event) {
       });
 
       addressResultEl.appendChild(ulEl);
-      console.log(data.data[1]);
 
       var addr = document.getElementsByName('address');
       for (var i = 0; i < addr.length; i++) {
         addr[i].addEventListener('change', function () {
-          console.log(this.value);
           document.getElementById('edit-address').value = this.value;
           document.getElementById('edit-city').value = data.data[0].cityName.en;
           document.getElementById('edit-province').value = data.data[0].mailingAddress.province.code;
