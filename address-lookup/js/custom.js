@@ -60,17 +60,50 @@ find_address.addEventListener("click", function (event) {
 
 var prev = document.getElementsByClassName("previous");
 var next = document.getElementsByClassName("next");
+var breadcrumbIcon = '<span class="glyphicon glyphicon-unchecked"></span><span class="wb-inv">(current page)</span> ';
 for (var i = 0; i < prev.length; i++) {
-  prev[i].addEventListener("click", function (event) {
+  prev[i].addEventListener("click", function(event) {
     var el = event.target.parentElement.parentElement.parentElement;
+    el.previousElementSibling.firstElementChild.setAttribute("data-toggle", "collapse");
     el.previousElementSibling.firstElementChild.click();
+    el.previousElementSibling.firstElementChild.setAttribute("data-toggle", "");
+    el.parentElement.previousElementSibling.firstElementChild.firstElementChild.setAttribute("data-toggle", "collapse");
     el.parentElement.previousElementSibling.firstElementChild.firstElementChild.click();
+    el.parentElement.previousElementSibling.firstElementChild.firstElementChild.setAttribute("data-toggle", "");
+    var breadcrumbId = el.parentElement.previousElementSibling.firstElementChild.firstElementChild.getAttribute("aria-controls").substring(0,6).replace("edit", "breadcrumb");
+    document.querySelector("#"+breadcrumbId).innerHTML = breadcrumbIcon + "<strong>" + document.querySelector("#"+breadcrumbId).innerHTML + "</strong>";
+    var breadcrumbTxt = document.querySelector("#"+breadcrumbId).nextElementSibling.innerText.replace("(current page)","");
+    document.querySelector("#"+breadcrumbId).nextElementSibling.innerHTML=breadcrumbTxt;
   });
 }
 for (var i = 0; i < next.length; i++) {
-  next[i].addEventListener("click", function (event) {
+  next[i].addEventListener("click", function(event) {
     var el = event.target.parentElement.parentElement.parentElement;
+    el.previousElementSibling.firstElementChild.setAttribute("data-toggle", "collapse");
     el.previousElementSibling.firstElementChild.click();
+    el.previousElementSibling.firstElementChild.setAttribute("data-toggle", "");
+    el.parentElement.nextElementSibling.firstElementChild.firstElementChild.setAttribute("data-toggle", "collapse");
     el.parentElement.nextElementSibling.firstElementChild.firstElementChild.click();
+    el.parentElement.nextElementSibling.firstElementChild.firstElementChild.setAttribute("data-toggle", "");
+    var breadcrumbId = el.parentElement.nextElementSibling.firstElementChild.firstElementChild.getAttribute("aria-controls").substring(0,6).replace("edit", "breadcrumb");
+    document.querySelector("#"+breadcrumbId).innerHTML = breadcrumbIcon + "<strong>" + document.querySelector("#"+breadcrumbId).innerHTML + "</strong>";
+    var breadcrumbTxt = document.querySelector("#"+breadcrumbId).previousElementSibling.innerText.replace("(current page)","");
+    document.querySelector("#"+breadcrumbId).previousElementSibling.innerHTML=breadcrumbTxt;
+  });
+}
+
+var submitBtn = document.querySelector(".webform-button--submit");
+var panelBtns = document.querySelectorAll(".panel-heading a");
+panelBtns.forEach(panelBtn => panelBtn.setAttribute("data-toggle", ""));
+if (submitBtn != null){
+  submitBtn.addEventListener("click", function(){
+    panelBtns.forEach(panelBtn => {
+      if(panelBtn.getAttribute("aria-expanded")!="true"){
+        panelBtn.setAttribute("data-toggle", "collapse");        
+        panelBtn.click();
+      }
+    });
+    document.querySelectorAll(".previous").forEach(previousBtn=>previousBtn.disabled = true);
+    document.querySelectorAll(".next").forEach(previousBtn=>previousBtn.disabled = true);
   });
 }
